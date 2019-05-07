@@ -14,9 +14,7 @@ Add the following lines to `/etc/hosts` on Linux.
 #### 1. Prepare the Web server
 First, make sure PHP and Apache2 HTTP server are installed and SQLite3 is enabled. Then, copy PHP files and database files to `/var` directory, change the owner and permissions, and restart Apache.
 ```bash
-cp -r payroll /var
-sudo chown -R www-data:www-data /var/db && sudo chown -R www-data:www-data /var/www && sudo chmod -R 755 /var/db && sudo chmod -R 755 /var/www
-service apache2 restart
+cp -r payroll /var && sudo chown -R www-data:www-data /var/db && sudo chown -R www-data:www-data /var/www && sudo chmod -R 755 /var/db && sudo chmod -R 755 /var/www && service apache2 restart
 ```
 #### 2. Start mock email server
 ```bash
