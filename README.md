@@ -20,4 +20,4 @@ cp -r payroll /var && sudo chown -R www-data:www-data /var/db && sudo chown -R w
 ```bash
 cd hackmail && npm install && npm start
 ```
-### Open the HTML files in a browser to witness the exploits!
+### Open the HTML files in a browser to see the exploits
