@@ -4,7 +4,7 @@ include('includes/common.php');
 
 // if the user is NOT logged in, redirect him to login page
 if (!$auth->user_id()) {
-	header('location: /');
+  header('location: /');
 }
 
 
@@ -14,25 +14,25 @@ if (!isset($_SESSION['csrf_token'])) $_SESSION['csrf_token'] = mt_rand();
 // handle the form submission
 $action = @$_POST['action'];
 if ($action == 'save' && $_POST['U3ByaW5nMjAxOVRhcmdldDFFYXN0ZXJFZ2c'] == 'U3ByaW5nMjAxOVRhcmdldDFFYXN0ZXJFZ2c') {
-	// verify CSRF protection
-	$expected = 1;
-	$teststr = $_POST['account'].$_POST['challenge'].$_POST['routing'];
-	for ($i = 0; $i < strlen($teststr); $i++) {
-		$expected = (13337 * $expected + ord($teststr[$i])) % 100000;
-	}
-	if ($_POST['response'] != $expected) {
-		notify('CSRF attempt prevented!'.$teststr.'--'.$_POST['response'].' != '.$expected, -1);
-	} else {
-		$accounting = ($_POST['account']).':'.($_POST['routing']);
-		$db->query("UPDATE users SET accounting='$accounting' WHERE user_id='".$auth->user_id()."'");
-		notify('Changes saved');
-	}
+  // verify CSRF protection
+  $expected = 1;
+  $teststr = $_POST['account'].$_POST['challenge'].$_POST['routing'];
+  for ($i = 0; $i < strlen($teststr); $i++) {
+    $expected = (13337 * $expected + ord($teststr[$i])) % 100000;
+  }
+  if ($_POST['response'] != $expected) {
+    notify('CSRF attempt prevented!'.$teststr.'--'.$_POST['response'].' != '.$expected, -1);
+  } else {
+    $accounting = ($_POST['account']).':'.($_POST['routing']);
+    $db->query("UPDATE users SET accounting='$accounting' WHERE user_id='".$auth->user_id()."'");
+    notify('Changes saved');
+  }
       
 }
 
 $eid = @$_GET['eid'];
 if ($eid) {
-	$name = $db->query("SELECT name FROM users WHERE eid='$eid'")->next();
+  $name = $db->query("SELECT name FROM users WHERE eid='$eid'")->next();
 }
 
 // grab form values from database if available
@@ -54,7 +54,7 @@ include('includes/header.php');
        <input id="route" type="number" name="routing" value="<?php echo $routing ?>">
        <input id="csrfc" type="hidden" name="challenge" value="<?php echo $_SESSION['csrf_token'] ?>">
        <input id="csrfr" type="hidden" name="response" value="">
-	<input type="hidden" name="U3ByaW5nMjAxOVRhcmdldDFFYXN0ZXJFZ2c" value="U3ByaW5nMjAxOVRhcmdldDFFYXN0ZXJFZ2c">
+  <input type="hidden" name="U3ByaW5nMjAxOVRhcmdldDFFYXN0ZXJFZ2c" value="U3ByaW5nMjAxOVRhcmdldDFFYXN0ZXJFZ2c">
        <div>
         <button class="btn submit" name="action" value="save">Save</button>
        </div>
@@ -66,7 +66,7 @@ include('includes/header.php');
 String.prototype.hashCode = function(){
   var hash = 1;
   for (i = 0; i < this.length; i++) {
-	hash = (13337 * hash + this.charCodeAt(i)) % 100000;
+  hash = (13337 * hash + this.charCodeAt(i)) % 100000;
   }
   return hash;
 }
@@ -74,8 +74,8 @@ String.prototype.hashCode = function(){
 var a = document.getElementById('account');
 var r = document.getElementById('route');
 function change() {
-	var challenge = document.getElementById('csrfc').value;
-	document.getElementById('csrfr').value = (a.value+challenge+r.value).hashCode()
+  var challenge = document.getElementById('csrfc').value;
+  document.getElementById('csrfr').value = (a.value+challenge+r.value).hashCode()
 }
 a.onkeyup = change;
 r.onkeyup = change;

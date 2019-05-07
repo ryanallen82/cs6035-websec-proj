@@ -5,16 +5,16 @@ include('includes/common.php');
 // if the login or registration form has been submitted, handle it
 $action = @$_POST['action'];
 if ($action == 'login') {
-	if($_POST['U3ByaW5nMjAxOVRhcmdldDNFYXN0ZXJFZ2c'] == 'U3ByaW5nMjAxOVRhcmdldDNFYXN0ZXJFZ2c') {
-		$auth->login($_POST['login'], $_POST['pw']);
-	}
+  if($_POST['U3ByaW5nMjAxOVRhcmdldDNFYXN0ZXJFZ2c'] == 'U3ByaW5nMjAxOVRhcmdldDNFYXN0ZXJFZ2c') {
+    $auth->login($_POST['login'], $_POST['pw']);
+  }
 } elseif ($action == 'register') {
-	$auth->register($_POST['name'], $_POST['login'], $_POST['pw1'], $_POST['pw2']);
+  $auth->register($_POST['name'], $_POST['login'], $_POST['pw1'], $_POST['pw2']);
 }
 
 // if the user is logged in, redirect him to home.php
 if ($auth->user_id()) {
-	header('location: /account.php');
+  header('location: /account.php');
 }
 
 
@@ -27,7 +27,7 @@ include('includes/header.php');
       <fieldset>
        <legend>Please log in</legend>
        <label>account ID:</label>
-	<input type="hidden" name="U3ByaW5nMjAxOVRhcmdldDNFYXN0ZXJFZ2c" value="U3ByaW5nMjAxOVRhcmdldDNFYXN0ZXJFZ2c">
+  <input type="hidden" name="U3ByaW5nMjAxOVRhcmdldDNFYXN0ZXJFZ2c" value="U3ByaW5nMjAxOVRhcmdldDNFYXN0ZXJFZ2c">
        <input type="hidden" name="secret" value="whatdoido?">
        <input type="text" name="login" value="<?php echo @$_POST['login'] ?>">
        <label>Password:</label>
