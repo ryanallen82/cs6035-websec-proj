@@ -1,3 +1,6 @@
+---
+path: /github/cs6035-websec-proj
+---
 # Web Security: Exploits
 *Project for CS 4235/6035 - Introduction to Information Security*
 - `exploit-1.html`: Bypass flawed XSRF protection.
